@@ -1,6 +1,5 @@
 package fr.jpbriend.whazzup;
 
-import com.sun.istack.internal.NotNull;
 import fr.jpbriend.whazzup.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +25,7 @@ public class WhazzupParser {
 
     private static Whazzup result;
 
-    public WhazzupParser(@NotNull String filePath) {
+    public WhazzupParser(String filePath) {
         if (filePath == null) {
             throw new NullPointerException("File path provided is null. Provide a valid file path");
         }
