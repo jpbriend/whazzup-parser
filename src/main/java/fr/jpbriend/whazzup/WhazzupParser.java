@@ -70,8 +70,6 @@ public class WhazzupParser {
                 }else if (client instanceof IvaoPilot) {
                     result.getPilots().add(client);
                 }
-
-
             }
         }
     }

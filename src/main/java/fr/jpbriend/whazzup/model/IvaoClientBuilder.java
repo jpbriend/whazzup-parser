@@ -1,42 +1,46 @@
 package fr.jpbriend.whazzup.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
 public class IvaoClientBuilder {
+    private final static Logger logger = LoggerFactory.getLogger(IvaoClientBuilder.class);
     private final static Pattern pattern = Pattern.compile(":");
 
     public static IvaoClient newinstance(String line) {
         String[] values = pattern.split(line, -1);
 
         if (values[3].equals("ATC")) {
-            // Bug in the data when an ATC is connected with client Altitude
-            if ("Altitude".equals(values[36]) || "IT-SOC".equals(values[0])) {
+            try {
+                IvaoATC atc = new IvaoATC();
+                atc.setCallsign(values[0]);
+                atc.setVID(values[1]);
+                atc.setName(values[2]);
+                atc.setClientType(values[3]);
+                atc.setFrequency(values[4]);
+                atc.setLatitude(new BigDecimal(values[5]));
+                atc.setLongitude(new BigDecimal(values[6]));
+                atc.setAltitude(new Integer(values[7]));
+                atc.setServer(values[14]);
+                atc.setProtocol(values[15]);
+                atc.setCombinedRating(values[16]);
+                atc.setFacilityType(FacilityType.getFacilityType(Integer.parseInt(values[18])));
+                atc.setVisualRange(new Integer(values[19]));
+                atc.setATIS(values[35]);
+                atc.setATISTime(zeroLongIfEmpty(values[36]));
+                atc.setConnectionTime(zeroLongIfEmpty(values[37]));
+                atc.setSoftwareName(values[38]);
+                atc.setSoftwareVersion(values[39]);
+                atc.setAdministrativeRating(AdministrativeRating.getAdministrativeRating(Integer.parseInt(values[40])));
+                atc.setATCRating(ATCRating.getATCRating(Integer.parseInt(values[41])));
+                return atc;
+            } catch (Exception e) {
+                logger.warn("Error while reading line " + line, e);
                 return null;
-            } // End of bug
-
-            IvaoATC atc = new IvaoATC();
-            atc.setCallsign(values[0]);
-            atc.setVID(values[1]);
-            atc.setName(values[2]);
-            atc.setClientType(values[3]);
-            atc.setFrequency(values[4]);
-            atc.setLatitude(new BigDecimal(values[5]));
-            atc.setLongitude(new BigDecimal(values[6]));
-            atc.setAltitude(new Integer(values[7]));
-            atc.setServer(values[14]);
-            atc.setProtocol(values[15]);
-            atc.setCombinedRating(values[16]);
-            atc.setFacilityType(FacilityType.getFacilityType(Integer.parseInt(values[18])));
-            atc.setVisualRange(new Integer(values[19]));
-            atc.setATIS(values[35]);
-            atc.setATISTime(zeroLongIfEmpty(values[36]));
-            atc.setConnectionTime(zeroLongIfEmpty(values[37]));
-            atc.setSoftwareName(values[38]);
-            atc.setSoftwareVersion(values[39]);
-            atc.setAdministrativeRating(AdministrativeRating.getAdministrativeRating(Integer.parseInt(values[40])));
-            atc.setATCRating(ATCRating.getATCRating(Integer.parseInt(values[41])));
-            return atc;
+            }
         } else if (values[3].equals("PILOT")) {
             IvaoPilot pilot = new IvaoPilot();
             pilot.setCallsign(values[0]);
