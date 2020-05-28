@@ -66,9 +66,9 @@ public class WhazzupParser {
             if (client != null) {
                 logger.debug(client.toString());
                 if (client instanceof IvaoATC) {
-                    result.getAtcs().add(client);
+                    result.getAtcs().add((IvaoATC)client);
                 }else if (client instanceof IvaoPilot) {
-                    result.getPilots().add(client);
+                    result.getPilots().add((IvaoPilot)client);
                 }
             }
         }

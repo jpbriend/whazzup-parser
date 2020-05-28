@@ -1,6 +1,7 @@
 package fr.jpbriend.whazzup.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class IvaoClient {
     private String callsign;
@@ -19,6 +20,19 @@ public class IvaoClient {
     private AdministrativeRating administrativeRating;
 
     public IvaoClient() { }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof IvaoClient)) return false;
+        IvaoClient that = (IvaoClient) o;
+        return getVID().equals(that.getVID());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getVID());
+    }
 
     public String getCallsign() {
         return callsign;

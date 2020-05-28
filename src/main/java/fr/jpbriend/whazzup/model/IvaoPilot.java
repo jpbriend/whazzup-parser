@@ -1,5 +1,7 @@
 package fr.jpbriend.whazzup.model;
 
+import java.util.Objects;
+
 public class IvaoPilot extends IvaoClient {
     private Integer groundSpeed;
     private String flightplanAircraft;
@@ -29,6 +31,20 @@ public class IvaoPilot extends IvaoClient {
 
     public IvaoPilot() {
         super();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof IvaoPilot)) return false;
+        if (!super.equals(o)) return false;
+        IvaoPilot ivaoPilot = (IvaoPilot) o;
+        return  super.equals(o) && getPilotRating() == ivaoPilot.getPilotRating();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getPilotRating());
     }
 
     @Override

@@ -1,5 +1,7 @@
 package fr.jpbriend.whazzup.model;
 
+import java.util.Objects;
+
 public class IvaoATC extends IvaoClient {
     private String frequency;
     private FacilityType facilityType;
@@ -10,6 +12,20 @@ public class IvaoATC extends IvaoClient {
 
     public IvaoATC() {
         super();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof IvaoATC)) return false;
+        if (!super.equals(o)) return false;
+        IvaoATC ivaoATC = (IvaoATC) o;
+        return super.equals(o) && getATCRating() == ivaoATC.getATCRating();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getATCRating());
     }
 
     @Override

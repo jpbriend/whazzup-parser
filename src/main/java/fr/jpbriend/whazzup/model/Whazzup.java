@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Whazzup {
-    private List<IvaoClient> pilots = new ArrayList<IvaoClient>();
-    private List<IvaoClient> atcs = new ArrayList<IvaoClient>();
+    private List<IvaoPilot> pilots = new ArrayList<IvaoPilot>();
+    private List<IvaoATC> atcs = new ArrayList<IvaoATC>();
 
     public Whazzup() {}
 
-    public List<IvaoClient> getPilots() {
+    public List<IvaoPilot> getPilots() {
         return pilots;
     }
 
-    public void setPilots(List<IvaoClient> pilots) {
+    public void setPilots(List<IvaoPilot> pilots) {
         this.pilots = pilots;
     }
 
-    public List<IvaoClient> getAtcs() {
+    public List<IvaoATC> getAtcs() {
         return atcs;
     }
 
-    public void setAtcs(List<IvaoClient> atcs) {
+    public void setAtcs(List<IvaoATC> atcs) {
         this.atcs = atcs;
     }
 
