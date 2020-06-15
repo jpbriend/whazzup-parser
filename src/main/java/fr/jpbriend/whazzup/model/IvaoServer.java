@@ -1,6 +1,8 @@
 package fr.jpbriend.whazzup.model;
 
-public class IvaoServer {
+import java.io.Serializable;
+
+public class IvaoServer implements Serializable {
     private String content;
 
     public String getContent() {

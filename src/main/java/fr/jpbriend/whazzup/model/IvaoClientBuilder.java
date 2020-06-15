@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public class IvaoClientBuilder {
     private final static Logger logger = LoggerFactory.getLogger(IvaoClientBuilder.class);
     private final static Pattern pattern = Pattern.compile(":");
+    private final static Boolean logReadingErrors = System.getProperty("LOG_READING_ERRORS") != null;
 
     public static IvaoClient newinstance(String line) {
         String[] values = pattern.split(line, -1);
@@ -38,7 +39,9 @@ public class IvaoClientBuilder {
                 atc.setATCRating(ATCRating.getATCRating(Integer.parseInt(values[41])));
                 return atc;
             } catch (Exception e) {
-                logger.warn("Error while reading line " + line, e);
+                if (logReadingErrors) {
+                    logger.warn("Error while reading line " + line, e);
+                }
                 return null;
             }
         } else if (values[3].equals("PILOT")) {
@@ -80,7 +83,8 @@ public class IvaoClientBuilder {
             pilot.setFlightplanTypeOfFlight(values[43]);
             pilot.setFlightplanPersonsOnBoard(values[44]);
             pilot.setHeading(new Integer(values[45]));
-            pilot.setSimulator(Simulator.getSimulator(Integer.parseInt(values[46])));
+            pilot.setOnGround("1".equals(values[46]));
+            pilot.setSimulator(Simulator.getSimulator(Integer.parseInt(values[47])));
             return pilot;
         } else {
             return null;

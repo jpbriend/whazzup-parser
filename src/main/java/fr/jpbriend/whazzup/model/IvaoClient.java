@@ -1,9 +1,10 @@
 package fr.jpbriend.whazzup.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class IvaoClient {
+public class IvaoClient implements Serializable {
     private String callsign;
     private String VID;
     private String name;

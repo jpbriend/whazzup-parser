@@ -1,9 +1,10 @@
 package fr.jpbriend.whazzup.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Simulator {
+public enum Simulator implements Serializable {
     MFS_95("Microsoft Flight Simulator 95", 1),
     MFS_98("Microsoft Flight Simulator 98", 2),
     MCFS("Microsoft Flight Combat Simulator", 3),

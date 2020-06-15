@@ -1,8 +1,9 @@
 package fr.jpbriend.whazzup.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class IvaoATC extends IvaoClient {
+public class IvaoATC extends IvaoClient implements Serializable {
     private String frequency;
     private FacilityType facilityType;
     private Integer visualRange;

@@ -1,9 +1,10 @@
 package fr.jpbriend.whazzup.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum AdministrativeRating {
+public enum AdministrativeRating implements Serializable {
     SUSPENDED("Suspended", 0),
     OBSERVER("Observer", 1),
     USER("User", 2),

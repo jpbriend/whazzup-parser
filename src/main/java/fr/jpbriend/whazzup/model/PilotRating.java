@@ -1,9 +1,10 @@
 package fr.jpbriend.whazzup.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum PilotRating {
+public enum PilotRating implements Serializable {
     OBSERVER("Observer", 1),
     FS1("Basic Flight Student (FS1)", 2),
     FS2("Flight Student (FS2)", 3),

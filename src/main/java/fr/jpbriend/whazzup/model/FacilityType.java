@@ -1,9 +1,10 @@
 package fr.jpbriend.whazzup.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum FacilityType {
+public enum FacilityType implements Serializable {
     OBSERVER("Observer", 0),
     FLIGHT_INFORMATION("Fight Information", 1),
     DELIVERY("Delivery", 2),

@@ -1,9 +1,10 @@
 package fr.jpbriend.whazzup.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum ATCRating {
+public enum ATCRating implements Serializable {
     OBSERVER("Observer", 1),
     AS1("ATC Applicant (AS1)", 2),
     AS2("ATC Trainee (AS2)", 3),

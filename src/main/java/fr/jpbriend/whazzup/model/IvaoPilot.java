@@ -1,8 +1,9 @@
 package fr.jpbriend.whazzup.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class IvaoPilot extends IvaoClient {
+public class IvaoPilot extends IvaoClient implements Serializable {
     private Integer groundSpeed;
     private String flightplanAircraft;
     private String flightplanCruisingSpeed;
